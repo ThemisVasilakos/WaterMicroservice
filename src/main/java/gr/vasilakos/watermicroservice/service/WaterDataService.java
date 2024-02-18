@@ -54,30 +54,5 @@ public class WaterDataService {
                 .coordinates(waterData.getCoordinates())
                 .build();
     }
-// Old method for creating data
-//    public WaterData createData(){
-//        WaterData waterData = WaterData.builder()
-//                .dissolvedOxygen(9.8)
-//                .oxidationReductionPotential(278.0)
-//                .pH(5.1)
-//                .turbidity(6.0)
-//                .totalDissolvedSolids(156.0)
-//                .temperature(23.5)
-//                .timestamp(Instant.now())
-//                .coordinates("Athens")
-//                .build();
-//
-//        userToNotifyService.getNotifyUserList(waterData);
-//
-//        return waterDataRepository.save(waterData);
-//    }
-//
-//    private String getRandomEuropeanCapital() {
-//        Random random = new Random();
-//        int randomIndex = random.nextInt(europeanCapitals.size());
-//        return europeanCapitals.get(randomIndex);
-//    }
-//
-//    private static final List<String> europeanCapitals = Arrays.asList(
-//            "Athens", "Berlin", "Paris", "Madrid", "Rome", "London", "Lisbon", "Amsterdam", "Vienna", "Brussels");
+
 }

@@ -35,9 +35,5 @@ public class WaterDataController {
     ){
         return new ResponseEntity<>(waterDataService.findLastEntry(location), HttpStatus.OK);
     }
-//Old method for creatind data
-//    @PostMapping("/create")
-//    public WaterData createEntry(){
-//        return waterDataService.createData();
-//    }
+
 }

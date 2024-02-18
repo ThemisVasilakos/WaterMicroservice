@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: water-mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: water-mongodb
+  template:
+    metadata:
+      labels:
+        app: water-mongodb
+    spec:
+      containers:
+        - name: water-mongodb
+          image: mongo:latest
+          ports:
+            - containerPort: 27018
+          volumeMounts:
+            - name: water-mongodb-data
+              mountPath: /data/water-db
+  volumes:
+    - name: water-mongodb-data
+      persistentVolumeClaim:
+        claimName: water-mongodb-data

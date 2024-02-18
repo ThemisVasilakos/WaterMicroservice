@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: water-microservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: water-microservice
+  template:
+    metadata:
+      labels:
+        app: water-microservice
+    spec:
+      containers:
+        - name: water-microservice
+          image: "themisvas/water-microservice:latest"
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATA_MONGODB_HOST
+              value: water-mongodb
+            - name: SPRING_DATA_MONGODB_PORT
+              value: "27018"
+            - name: SPRING_DATA_MONGODB_DATABASE
+              value: water
+            - name: SPRING_DATA_MONGODB_AUTHENTICATION
+              value: admin
+            - name: SPRING_RABBITMQ_HOST
+              value: rabbitmq
+            - name: SPRING_RABBITMQ_PORT
+              value: "5672"
+            - name: SPRING_RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secret
+                  key: rabbitmq-username
+            - name: SPRING_RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secret
+                  key: rabbitmq-password
+            - name: RABBITMQ_WATER_QUEUE_NAME
+              value: water.notification.queue
+            - name: RABBITMQ_EXCHANGE_NAME
+              value: notification.exchange
+            - name: RABBITMQ_WATER_ROUTING_KEY
+              value: water.queue.user.notification

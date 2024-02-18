@@ -16,7 +16,7 @@ spec:
         - name: water-microservice
           image: "themisvas/water-microservice:latest"
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
           env:
             - name: SPRING_DATA_MONGODB_HOST
               value: water-mongodb
